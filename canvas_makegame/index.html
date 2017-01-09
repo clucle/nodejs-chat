@@ -50,7 +50,7 @@
  			function gameLoop(){
  				if(key_lr == 1) x--;
  				if(key_lr == 2) x++;
- 				socket.emit('send message', x);
+ 				if(key_lr != 3) socket.emit('send message', x);
  				draw_context.clearRect(0,0,draw_canvas.width,draw_canvas.height);
  				for(var draw_key in player){
  					draw_context.fillRect(player[draw_key], 50, 10, 10);
@@ -96,9 +96,7 @@
 			
 
  			socket.on('new message', function(data){
- 				player[data.nick] = data.msg;
-
- 				
+ 				player[data.nick] = data.msg; 				
  				//data.nick 이름 data.msg x좌표
  			})
  			
